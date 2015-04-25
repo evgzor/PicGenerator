@@ -234,7 +234,13 @@
     
     NSMutableDictionary *locDict = [[NSMutableDictionary alloc] init];
     
-    [locDict setObject:location.timestamp forKey:(NSString*)kCGImagePropertyGPSTimeStamp];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss.SSSSSS"];
+    //[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [locDict setObject:[formatter stringFromDate:location.timestamp] forKey:(NSString *)kCGImagePropertyGPSTimeStamp];
+    [formatter setDateFormat:@"yyyy:MM:dd"];
+    [locDict setObject:[formatter stringFromDate:location.timestamp] forKey:(NSString *)kCGImagePropertyGPSDateStamp];
+    
     [locDict setObject:latRef forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
     [locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString *)kCGImagePropertyGPSLatitude];
     [locDict setObject:longRef forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
@@ -246,6 +252,7 @@
     
 }
 
+
 +(BOOL)getLocation:(CLLocation **)location andStringRepresentation:(NSString**)string forMetaData:(NSDictionary*)metaData
 {
     NSDictionary* locDict = metaData[(NSString*)kCGImagePropertyGPSDictionary];
@@ -254,7 +261,8 @@
     float longitude = [locDict[(NSString*)kCGImagePropertyGPSLongitude] floatValue];
     *location = [[CLLocation alloc] initWithLatitude:laltitude longitude:longitude];
     
-    NSDate* timeStamp = locDict[(NSString*)(NSString*)kCGImagePropertyGPSTimeStamp];
+    NSString* timeStamp = locDict[(NSString*)kCGImagePropertyGPSTimeStamp];
+    NSString* dateStamp = locDict[(NSString *)kCGImagePropertyGPSDateStamp];
     
     float altitude = [locDict[(NSString*)kCGImagePropertyGPSAltitude] floatValue];
     
@@ -262,8 +270,8 @@
     NSString* latitudeRef = locDict[(NSString*)kCGImagePropertyGPSLatitudeRef];
     float dop = [locDict[(NSString*)kCGImagePropertyGPSDOP] floatValue];
     
-    *string = [NSString stringWithFormat:@"Altitude:%3.3f, DOP:%3f Latitude:%3.3f, LatitudeRef:%@ Longitude:%3.3f LongitudeRef:%@, time:%@",altitude,dop,laltitude,latitudeRef,longitude,longitudeRef,timeStamp ? timeStamp : @""];
-    
+    *string = [NSString stringWithFormat:@"Altitude:%3.3f, DOP:%3f Latitude:%3.3f, LatitudeRef:%@ Longitude:%3.3f LongitudeRef:%@, time:%@, date:%@",altitude,dop,laltitude,latitudeRef,longitude,longitudeRef,timeStamp ? timeStamp : @"",dateStamp ? dateStamp : @""];
+        
     if (laltitude && longitude) {
         return YES;
     }
@@ -285,10 +293,27 @@
         [imageMetadata setObject:[MHCameraRoll gpsDictionaryForLocation:loc] forKey:(NSString*)kCGImagePropertyGPSDictionary];
     }
     
-    CLGeocoder *ceo = [[CLGeocoder alloc]init];
-    //CLLocation *loc = [[CLLocation alloc]initWithLatitude:32.00 longitude:21.322];
+    ALAssetsLibraryWriteImageCompletionBlock imageWriteCompletionBlock =
+    ^(NSURL *newURL, NSError *error) {
+        if (error) {
+            NSLog( @"Error writing image with metadata to Photo Library: %@", error );
+        } else {
+            NSLog( @"Wrote image %@ with metadata %@ to Photo Library",newURL,imageMetadata);
+        }
+    };
     
-    [ceo reverseGeocodeLocation: loc completionHandler:
+    // Save the new image to the Camera Roll
+    [library writeImageToSavedPhotosAlbum:[imageToSave CGImage]
+                                 metadata:imageMetadata
+                          completionBlock:imageWriteCompletionBlock];
+    
+}
+
++ (void)location: (CLLocation*)location forCompletition:(void(^)(NSString *locateAt))completionHandler
+{
+    CLGeocoder *ceo = [[CLGeocoder alloc]init];
+    
+    [ceo reverseGeocodeLocation: location completionHandler:
      ^(NSArray *placemarks, NSError *error) {
          CLPlacemark *placemark = [placemarks objectAtIndex:0];
          NSLog(@"placemark %@",placemark);
@@ -308,22 +333,9 @@
          //Print the location to console
          NSLog(@"currently at %@",locatedAt);
          
+         completionHandler(locatedAt);
      }];
-    
-    ALAssetsLibraryWriteImageCompletionBlock imageWriteCompletionBlock =
-    ^(NSURL *newURL, NSError *error) {
-        if (error) {
-            NSLog( @"Error writing image with metadata to Photo Library: %@", error );
-        } else {
-            NSLog( @"Wrote image %@ with metadata %@ to Photo Library",newURL,imageMetadata);
-        }
-    };
-    
-    // Save the new image to the Camera Roll
-    [library writeImageToSavedPhotosAlbum:[imageToSave CGImage]
-                                 metadata:imageMetadata
-                          completionBlock:imageWriteCompletionBlock];
-    
+
 }
 
 

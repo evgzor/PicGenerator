@@ -39,7 +39,15 @@
     BOOL isGPSDataValible = [MHCameraRoll getLocation:&location andStringRepresentation:&gpsDataString forMetaData:_metadata];
     
     if (isGPSDataValible) {
-        self.imageView.image = [self drawText:gpsDataString inImage:_image atPoint:CGPointMake(0, _image.size.height-80)];
+        self.imageView.image = [self drawText:gpsDataString inImage:_image atPoint:CGPointMake(0, _image.size.height-70)];
+       /* [MHCameraRoll location:location forCompletition:^(NSString *locateAt) {
+            NSString* summaryDiscription = [NSString stringWithFormat:@"%@ %@",gpsDataString,locateAt];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                                self.imageView.image = [self drawText:summaryDiscription inImage:_image atPoint:CGPointMake(0, _image.size.height-70)];
+                               
+                           });
+        }];*/
     }
     
     
@@ -88,15 +96,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
