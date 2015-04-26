@@ -7,7 +7,6 @@
 //
 
 #import "CameraViewController.h"
-#import <ImageIO/ImageIO.h>
 @import AVKit;
 @import AVFoundation;
 #import "PhotoCameraRoll.h"
@@ -17,7 +16,6 @@
 @interface CameraViewController () <CLLocationManagerDelegate>
     
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
 @property(nonatomic, weak) IBOutlet UIView *vImagePreview;
 @property(nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
 
@@ -50,7 +48,7 @@
     
 
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    session.sessionPreset = AVCaptureSessionPresetMedium;;
+    session.sessionPreset = AVCaptureSessionPresetMedium;
     
     CALayer *viewLayer = self.vImagePreview.layer;
     NSLog(@"viewLayer = %@", viewLayer);
@@ -127,13 +125,12 @@
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
          
+         image = [image imageByRotatingImageFromImageOrientation:UIImageOrientationRight];
          
-         [PhotoCameraRoll saveImage:image withInfo:(__bridge NSDictionary*)exifAttachments forLocation:_locationManager.location];
+         [image saveImageWithInfo:(__bridge NSDictionary*)exifAttachments forLocation:_locationManager.location];
          
      }];
 }
-
-
 
 
 @end

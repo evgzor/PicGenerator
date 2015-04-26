@@ -12,7 +12,6 @@
 #import "PhotoCameraRoll.h"
 #import "CollectionCell.h"
 #import "PhotoFromLibViewController.h"
-@import ImageIO;
 
 @interface ThirdViewController ()  <UICollectionViewDataSource, UICollectionViewDelegate>
 

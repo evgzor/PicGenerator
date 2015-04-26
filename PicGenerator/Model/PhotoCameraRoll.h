@@ -38,9 +38,4 @@ typedef NS_ENUM(NSInteger, MHCameraRollThumbStyle) {
 - (void)CGImageAtIndex:(NSInteger)index completionHandler:(void(^)(CGImageRef CGImage))completionHandler;
 - (void)metaDataAtIndex:(NSInteger)index completionHandler:(void(^)(NSDictionary *metaData))completionHandler;
 
-+ (NSDictionary *) gpsDictionaryForLocation:(CLLocation *)location;
-+ (BOOL)getLocation:(CLLocation **)location andStringRepresentation:(NSString**)string forMetaData:(NSDictionary*)metaData;
-+ (void) saveImage:(UIImage *)imageToSave withInfo:(NSDictionary *)info forLocation:(CLLocation *)location;
-+ (void)location: (CLLocation*)location forCompletition:(void(^)(NSString *locateAt))completionHandler;
-
 @end

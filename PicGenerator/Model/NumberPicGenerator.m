@@ -76,9 +76,7 @@
     if (_isStarted) {
         return;
     }
-    
 
-    
     _timer = [NSTimer scheduledTimerWithTimeInterval: .5f
                                                   target: self
                                                 selector:@selector(onTick)
@@ -119,9 +117,11 @@
 -(void)appWillGoInBackground: (NSNotification*)notif
 {
     UIImage* image = [self getImageFromText:@"B"];
+    
     [_delegates applySelector:@selector(unevenUpdatedImage:) withArgument:image];
     [_delegates applySelector:@selector(evenUpdatedIdmage:) withArgument:image];
     [_delegates applySelector:@selector(updateState) withArgument:nil];
+    
     [self pause];
     
 }
@@ -137,7 +137,7 @@
 -(UIImage*)getImageFromText:(NSString*)text
 {
     UIImage* image = [UIImage imageWithColor:[UIColor clearColor] andSize:[UIApplication sharedApplication].keyWindow.bounds.size];
-    return [image drawText:text atPoint:CGPointMake(0., 0.) withFontSize:500 andTextColor:[UIColor brownColor] andBackgroundColor:[UIColor yellowColor]];
+    return [image drawText:text atPoint:CGPointMake(0., 0.) withFontSize:450 andTextColor:[UIColor brownColor] andBackgroundColor:[UIColor yellowColor]];
 }
 
 @end
