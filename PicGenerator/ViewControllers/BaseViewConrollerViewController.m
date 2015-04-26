@@ -34,6 +34,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    _generator = nil;
+}
+
+#pragma mark - user action
+
 -(void)startStopGenerator
 {
     if (!_generator) {
@@ -51,6 +58,8 @@
     }
     
 }
+
+#pragma mark- NumberPicGeneratorDelegate realization
 
 -(void)updateState
 {

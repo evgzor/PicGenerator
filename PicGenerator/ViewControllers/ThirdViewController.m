@@ -8,7 +8,7 @@
 
 #import "ThirdViewController.h"
 #import <Foundation/Foundation.h>
-#import "CAmeraViewController.h"
+#import "CameraViewController.h"
 #import "PhotoCameraRoll.h"
 #import "CollectionCell.h"
 #import "PhotoFromLibViewController.h"
@@ -129,7 +129,7 @@
 -(void)showCamera:(id)sender
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    CAmeraViewController*contentPage = [storyboard instantiateViewControllerWithIdentifier:@"camera"];
+    CameraViewController*contentPage = [storyboard instantiateViewControllerWithIdentifier:@"camera"];
     
     [self.navigationController pushViewController:contentPage animated:YES];
 }

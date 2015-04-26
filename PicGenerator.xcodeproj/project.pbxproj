@@ -17,7 +17,7 @@
 		F00C96E51AEAD2A100282F39 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00C96E41AEAD2A100282F39 /* Images.xcassets */; };
 		F00C96E81AEAD2A100282F39 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00C96E61AEAD2A100282F39 /* LaunchScreen.xib */; };
 		F00C96F41AEAD2A200282F39 /* PicGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C96F31AEAD2A200282F39 /* PicGeneratorTests.m */; };
-		F00C97221AEBE71800282F39 /* CAmeraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C97171AEBE71800282F39 /* CAmeraViewController.m */; };
+		F00C97221AEBE71800282F39 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C97171AEBE71800282F39 /* CameraViewController.m */; };
 		F00C97231AEBE71800282F39 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C97191AEBE71800282F39 /* FirstViewController.m */; };
 		F00C97241AEBE71800282F39 /* PhotoFromLibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C971B1AEBE71800282F39 /* PhotoFromLibViewController.m */; };
 		F00C97251AEBE71800282F39 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C971D1AEBE71800282F39 /* SecondViewController.m */; };
@@ -57,8 +57,8 @@
 		F00C96ED1AEAD2A200282F39 /* PicGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00C96F21AEAD2A200282F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F00C96F31AEAD2A200282F39 /* PicGeneratorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicGeneratorTests.m; sourceTree = "<group>"; };
-		F00C97161AEBE71800282F39 /* CAmeraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAmeraViewController.h; sourceTree = "<group>"; };
-		F00C97171AEBE71800282F39 /* CAmeraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAmeraViewController.m; sourceTree = "<group>"; };
+		F00C97161AEBE71800282F39 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		F00C97171AEBE71800282F39 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		F00C97181AEBE71800282F39 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		F00C97191AEBE71800282F39 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		F00C971A1AEBE71800282F39 /* PhotoFromLibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFromLibViewController.h; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 		F00C97151AEBE71800282F39 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F00C97161AEBE71800282F39 /* CAmeraViewController.h */,
-				F00C97171AEBE71800282F39 /* CAmeraViewController.m */,
+				F00C97161AEBE71800282F39 /* CameraViewController.h */,
+				F00C97171AEBE71800282F39 /* CameraViewController.m */,
 				F00C97181AEBE71800282F39 /* FirstViewController.h */,
 				F00C97191AEBE71800282F39 /* FirstViewController.m */,
 				848CCE5D1AECF5EC00A679C6 /* BaseViewConrollerViewController.h */,
@@ -306,7 +306,7 @@
 				F00C97271AEBE71800282F39 /* ThirdViewController.m in Sources */,
 				F00C972C1AEBE72000282F39 /* CollectionCell.m in Sources */,
 				F00C96DA1AEAD2A100282F39 /* AppDelegate.m in Sources */,
-				F00C97221AEBE71800282F39 /* CAmeraViewController.m in Sources */,
+				F00C97221AEBE71800282F39 /* CameraViewController.m in Sources */,
 				F00C97241AEBE71800282F39 /* PhotoFromLibViewController.m in Sources */,
 				F00C96D71AEAD2A100282F39 /* main.m in Sources */,
 				F00C97231AEBE71800282F39 /* FirstViewController.m in Sources */,

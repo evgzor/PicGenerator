@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 @import AssetsLibrary;
 
-@interface CAmeraViewController : UIViewController
+@interface CameraViewController : UIViewController
 
 @end

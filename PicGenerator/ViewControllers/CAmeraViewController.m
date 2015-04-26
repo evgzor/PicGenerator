@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Z. All rights reserved.
 //
 
-#import "CAmeraViewController.h"
+#import "CameraViewController.h"
 #import <ImageIO/ImageIO.h>
 @import AVKit;
 @import AVFoundation;
@@ -14,7 +14,7 @@
 #import "UtilsHelper.h"
 
 
-@interface CAmeraViewController () <CLLocationManagerDelegate>
+@interface CameraViewController () <CLLocationManagerDelegate>
     
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation CAmeraViewController
+@implementation CameraViewController
 
 #pragma mark - viewLifeCicle
 
@@ -81,6 +81,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    _locationManager.delegate = nil;
+    _locationManager = nil;
+    _stillImageOutput = nil;
     // Dispose of any resources that can be recreated.
 }
 
