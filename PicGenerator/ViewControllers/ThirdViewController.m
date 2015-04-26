@@ -9,7 +9,7 @@
 #import "ThirdViewController.h"
 #import <Foundation/Foundation.h>
 #import "CAmeraViewController.h"
-#import "MHCameraRoll.h"
+#import "PhotoCameraRoll.h"
 #import "CollectionCell.h"
 #import "PhotoFromLibViewController.h"
 @import ImageIO;
@@ -18,7 +18,7 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UIView *unauthorizedView;
-@property (nonatomic, strong) MHCameraRoll *cameraRoll;
+@property (nonatomic, strong) PhotoCameraRoll *cameraRoll;
 
 @end
 
@@ -31,24 +31,29 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Camera" style:UIBarButtonItemStylePlain target:self action:@selector(showCamera:)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
-    [self reloadUpdatedData];
-    
     UINib *nib = [UINib nibWithNibName:@"CollectionCell" bundle: nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"collectionCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     [self reloadUpdatedData];
 }
 
+-(void)dealloc
+{
+    _collectionView.delegate = nil;
+    _collectionView.dataSource = nil;
+    _cameraRoll = nil;
+}
+
 -(void)reloadUpdatedData
 {
-    self.cameraRoll = [[MHCameraRoll alloc] init];
+    self.cameraRoll = [[PhotoCameraRoll alloc] init];
     self.cameraRoll.fileTypes = MHCameraRollFileTypesAll; //don't filter by type
     self.cameraRoll.thumbStyle = MHCameraRollThumbStyleSmallSquare; //make scale to be a third of the screen
     
@@ -76,12 +81,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    self.collectionView = nil;
-    self.unauthorizedView = nil;
-    self.cameraRoll = nil;
-}
 
 #pragma mark - collection view
 

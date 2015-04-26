@@ -10,6 +10,7 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+#include "NumberPicGenerator.h"
 
 @interface TabBarController ()
 
@@ -20,13 +21,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NumberPicGenerator* generator = [[NumberPicGenerator alloc] init];
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
     FirstViewController* firstVC = [storyboard instantiateViewControllerWithIdentifier:@"first"];
+    firstVC.generator = generator;
+    
+    UINavigationController* firstNav = [[UINavigationController alloc] initWithRootViewController:firstVC];
+    
     SecondViewController* secondVC = [storyboard instantiateViewControllerWithIdentifier:@"second"];
+    secondVC.generator = generator;
     
-    UINavigationController *thirdVC = [storyboard instantiateViewControllerWithIdentifier:@"third"];
+    UINavigationController* secondNav = [[UINavigationController alloc] initWithRootViewController:secondVC];
     
-    self.viewControllers = [NSArray arrayWithObjects:firstVC, secondVC,thirdVC,nil];
+    ThirdViewController *thirdVC = [storyboard instantiateViewControllerWithIdentifier:@"third"];
+    
+    UINavigationController* thirdNav = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+    
+    self.viewControllers = @[firstNav, secondNav,thirdNav];
 }
 
 - (void)didReceiveMemoryWarning {

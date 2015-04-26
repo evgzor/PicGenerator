@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		848CCE5F1AECF5EC00A679C6 /* BaseViewConrollerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848CCE5E1AECF5EC00A679C6 /* BaseViewConrollerViewController.m */; };
+		848CCE621AED243E00A679C6 /* PhotoCameraRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = 848CCE611AED243E00A679C6 /* PhotoCameraRoll.m */; };
+		848FA72D1AECDCC500276212 /* UtilsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 848FA72C1AECDCC500276212 /* UtilsHelper.m */; };
+		848FA7301AECE5B800276212 /* NumberPicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 848FA72F1AECE5B800276212 /* NumberPicGenerator.m */; };
 		F00C96D71AEAD2A100282F39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C96D61AEAD2A100282F39 /* main.m */; };
 		F00C96DA1AEAD2A100282F39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C96D91AEAD2A100282F39 /* AppDelegate.m */; };
 		F00C96E31AEAD2A100282F39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00C96E11AEAD2A100282F39 /* Main.storyboard */; };
@@ -21,7 +25,6 @@
 		F00C97271AEBE71800282F39 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C97211AEBE71800282F39 /* ThirdViewController.m */; };
 		F00C972C1AEBE72000282F39 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C972A1AEBE72000282F39 /* CollectionCell.m */; };
 		F00C972D1AEBE72000282F39 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00C972B1AEBE72000282F39 /* CollectionCell.xib */; };
-		F00C97321AEBE73200282F39 /* MHCameraRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = F00C97311AEBE73200282F39 /* MHCameraRoll.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		848CCE5D1AECF5EC00A679C6 /* BaseViewConrollerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewConrollerViewController.h; sourceTree = "<group>"; };
+		848CCE5E1AECF5EC00A679C6 /* BaseViewConrollerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewConrollerViewController.m; sourceTree = "<group>"; };
+		848CCE601AED243E00A679C6 /* PhotoCameraRoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCameraRoll.h; sourceTree = "<group>"; };
+		848CCE611AED243E00A679C6 /* PhotoCameraRoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCameraRoll.m; sourceTree = "<group>"; };
+		848FA72B1AECDCC500276212 /* UtilsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsHelper.h; sourceTree = "<group>"; };
+		848FA72C1AECDCC500276212 /* UtilsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsHelper.m; sourceTree = "<group>"; };
+		848FA72E1AECE5B800276212 /* NumberPicGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberPicGenerator.h; sourceTree = "<group>"; };
+		848FA72F1AECE5B800276212 /* NumberPicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberPicGenerator.m; sourceTree = "<group>"; };
 		F00C96D11AEAD2A100282F39 /* PicGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00C96D51AEAD2A100282F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F00C96D61AEAD2A100282F39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -61,8 +72,6 @@
 		F00C97291AEBE72000282F39 /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
 		F00C972A1AEBE72000282F39 /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
 		F00C972B1AEBE72000282F39 /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
-		F00C97301AEBE73200282F39 /* MHCameraRoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCameraRoll.h; sourceTree = "<group>"; };
-		F00C97311AEBE73200282F39 /* MHCameraRoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCameraRoll.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +159,8 @@
 				F00C97171AEBE71800282F39 /* CAmeraViewController.m */,
 				F00C97181AEBE71800282F39 /* FirstViewController.h */,
 				F00C97191AEBE71800282F39 /* FirstViewController.m */,
+				848CCE5D1AECF5EC00A679C6 /* BaseViewConrollerViewController.h */,
+				848CCE5E1AECF5EC00A679C6 /* BaseViewConrollerViewController.m */,
 				F00C971A1AEBE71800282F39 /* PhotoFromLibViewController.h */,
 				F00C971B1AEBE71800282F39 /* PhotoFromLibViewController.m */,
 				F00C971C1AEBE71800282F39 /* SecondViewController.h */,
@@ -176,18 +187,14 @@
 		F00C972E1AEBE73200282F39 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F00C972F1AEBE73200282F39 /* MHCameraRoll */,
+				848CCE601AED243E00A679C6 /* PhotoCameraRoll.h */,
+				848CCE611AED243E00A679C6 /* PhotoCameraRoll.m */,
+				848FA72B1AECDCC500276212 /* UtilsHelper.h */,
+				848FA72C1AECDCC500276212 /* UtilsHelper.m */,
+				848FA72E1AECE5B800276212 /* NumberPicGenerator.h */,
+				848FA72F1AECE5B800276212 /* NumberPicGenerator.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F00C972F1AEBE73200282F39 /* MHCameraRoll */ = {
-			isa = PBXGroup;
-			children = (
-				F00C97301AEBE73200282F39 /* MHCameraRoll.h */,
-				F00C97311AEBE73200282F39 /* MHCameraRoll.m */,
-			);
-			path = MHCameraRoll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,9 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848FA72D1AECDCC500276212 /* UtilsHelper.m in Sources */,
+				848CCE5F1AECF5EC00A679C6 /* BaseViewConrollerViewController.m in Sources */,
+				848CCE621AED243E00A679C6 /* PhotoCameraRoll.m in Sources */,
 				F00C97261AEBE71800282F39 /* TabBarController.m in Sources */,
 				F00C97251AEBE71800282F39 /* SecondViewController.m in Sources */,
-				F00C97321AEBE73200282F39 /* MHCameraRoll.m in Sources */,
 				F00C97271AEBE71800282F39 /* ThirdViewController.m in Sources */,
 				F00C972C1AEBE72000282F39 /* CollectionCell.m in Sources */,
 				F00C96DA1AEAD2A100282F39 /* AppDelegate.m in Sources */,
@@ -301,6 +310,7 @@
 				F00C97241AEBE71800282F39 /* PhotoFromLibViewController.m in Sources */,
 				F00C96D71AEAD2A100282F39 /* main.m in Sources */,
 				F00C97231AEBE71800282F39 /* FirstViewController.m in Sources */,
+				848FA7301AECE5B800276212 /* NumberPicGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +511,7 @@
 				F00C96F91AEAD2A200282F39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F00C96FA1AEAD2A200282F39 /* Build configuration list for PBXNativeTarget "PicGeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +520,7 @@
 				F00C96FC1AEAD2A200282F39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

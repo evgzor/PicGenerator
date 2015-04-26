@@ -10,7 +10,8 @@
 #import <ImageIO/ImageIO.h>
 @import AVKit;
 @import AVFoundation;
-#import "MHCameraRoll.h"
+#import "PhotoCameraRoll.h"
+#import "UtilsHelper.h"
 
 
 @interface CAmeraViewController () <CLLocationManagerDelegate>
@@ -44,7 +45,7 @@
     [super viewDidAppear:animated];
     
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    NSDictionary *outputSettings = @{AVVideoCodecKey: AVVideoCodecJPEG};
     [_stillImageOutput setOutputSettings:outputSettings];
     
 
@@ -66,6 +67,11 @@
     if (!input) {
         // Handle the error appropriately.
         NSLog(@"ERROR: trying to open camera: %@", error);
+        
+        [[[UIAlertView alloc] initWithTitle:@"Camera Error" message:[NSString stringWithFormat:@"ERROR: trying to open camera: %@", error] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles: nil] show];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
     }
     [session addInput:input];
     [session addOutput:_stillImageOutput];
@@ -76,6 +82,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    _locationManager.delegate = nil;
+    _locationManager = nil;
+    _stillImageOutput = nil;
 }
 
 #pragma mark - user action
@@ -110,11 +123,9 @@
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData:imageData];
          
-          //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
          
-         [MHCameraRoll saveImage:image withInfo:(__bridge NSDictionary*)exifAttachments forLocation:_locationManager.location];
+         [PhotoCameraRoll saveImage:image withInfo:(__bridge NSDictionary*)exifAttachments forLocation:_locationManager.location];
          
-         //self.vImage.image = image;
      }];
 }
 

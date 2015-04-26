@@ -2,15 +2,13 @@
 //  MHCameraRoll.m
 //  pxlcld-ios
 //
-//  Created by Matej Hrescak on 3/19/14.
-//  Copyright (c) 2014 facebook. All rights reserved.
 //
 
-#import "MHCameraRoll.h"
+#import "PhotoCameraRoll.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface MHCameraRoll()
+@interface PhotoCameraRoll()
 
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) ALAssetsLibrary *library;
@@ -18,19 +16,26 @@
 
 @end
 
-@implementation MHCameraRoll
+@implementation PhotoCameraRoll
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.library = [[ALAssetsLibrary alloc] init];
-        self.fileTypes = MHCameraRollFileTypesAll;
-        self.thumbStyle = MHCameraRollThumbStyleSmallSquare;
-        self.images = [[NSMutableArray alloc] init];
-        self.thumbCache = [[NSMutableDictionary alloc] init];
+        _library = [[ALAssetsLibrary alloc] init];
+        _fileTypes = MHCameraRollFileTypesAll;
+        _thumbStyle = MHCameraRollThumbStyleSmallSquare;
+        _images = [[NSMutableArray alloc] init];
+        _thumbCache = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    _library = nil;
+    _images = nil;
+    _thumbCache = nil;
 }
 
 #pragma mark - loading
@@ -88,9 +93,9 @@
 - (NSString *)fileNameAtIndex:(NSInteger)index
 {
     NSString *fileName = @"";
-    NSDictionary *image = [self.images objectAtIndex:index];
+    NSDictionary *image = (self.images)[index];
     if (image) {
-        fileName = [image objectForKey:@"fileName"];
+        fileName = image[@"fileName"];
     }
     
     return fileName;
@@ -99,9 +104,9 @@
 - (NSString *)fileURLAtIndex:(NSInteger)index
 {
     NSString *filePath = @"";
-    NSDictionary *image = [self.images objectAtIndex:index];
+    NSDictionary *image = (self.images)[index];
     if (image) {
-        filePath = [image objectForKey:@"URL"];
+        filePath = image[@"URL"];
     }
     
     return filePath;
@@ -109,20 +114,20 @@
 
 - (void)thumbAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *thumb))completionHandler
 {
-    UIImage *thumb = self.thumbCache[[NSNumber numberWithInteger:index]];
+    UIImage *thumb = self.thumbCache[@(index)];
     if (thumb) {
         //return cached thumbnail if we have one
         completionHandler(thumb);
     } else {
         //create new one and save to cache if we don't
         [self.library assetForURL:self.images[index][@"URL"] resultBlock:^(ALAsset *asset) {
-            UIImage *thumb = [[UIImage alloc] init];
+            UIImage *thumb;
             if (self.thumbStyle == MHCameraRollThumbStyleSmallSquare) {
                 thumb = [UIImage imageWithCGImage:[asset thumbnail]];
             } else {
                 thumb = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
             }
-            [self.thumbCache setObject:thumb forKey:[NSNumber numberWithInteger:index]];
+            (self.thumbCache)[@(index)] = thumb;
             completionHandler(thumb);
         } failureBlock:^(NSError *error) {
             NSLog(@"Error loading asset");
@@ -237,16 +242,16 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm:ss.SSSSSS"];
     //[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [locDict setObject:[formatter stringFromDate:location.timestamp] forKey:(NSString *)kCGImagePropertyGPSTimeStamp];
+    locDict[(NSString *)kCGImagePropertyGPSTimeStamp] = [formatter stringFromDate:location.timestamp];
     [formatter setDateFormat:@"yyyy:MM:dd"];
-    [locDict setObject:[formatter stringFromDate:location.timestamp] forKey:(NSString *)kCGImagePropertyGPSDateStamp];
+    locDict[(NSString *)kCGImagePropertyGPSDateStamp] = [formatter stringFromDate:location.timestamp];
     
-    [locDict setObject:latRef forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
-    [locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString *)kCGImagePropertyGPSLatitude];
-    [locDict setObject:longRef forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
-    [locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString *)kCGImagePropertyGPSLongitude];
-    [locDict setObject:[NSNumber numberWithFloat:location.horizontalAccuracy] forKey:(NSString*)kCGImagePropertyGPSDOP];
-    [locDict setObject:[NSNumber numberWithFloat:location.altitude] forKey:(NSString*)kCGImagePropertyGPSAltitude];
+    locDict[(NSString*)kCGImagePropertyGPSLatitudeRef] = latRef;
+    locDict[(NSString *)kCGImagePropertyGPSLatitude] = @(exifLatitude);
+    locDict[(NSString*)kCGImagePropertyGPSLongitudeRef] = longRef;
+    locDict[(NSString *)kCGImagePropertyGPSLongitude] = @(exifLongitude);
+    locDict[(NSString*)kCGImagePropertyGPSDOP] = @(location.horizontalAccuracy);
+    locDict[(NSString*)kCGImagePropertyGPSAltitude] = @(location.altitude);
     
     return locDict;
     
@@ -290,7 +295,7 @@
     // add GPS data
     CLLocation * loc = location; // need a location here
     if ( loc ) {
-        [imageMetadata setObject:[MHCameraRoll gpsDictionaryForLocation:loc] forKey:(NSString*)kCGImagePropertyGPSDictionary];
+        imageMetadata[(NSString*)kCGImagePropertyGPSDictionary] = [PhotoCameraRoll gpsDictionaryForLocation:loc];
     }
     
     ALAssetsLibraryWriteImageCompletionBlock imageWriteCompletionBlock =
@@ -315,7 +320,7 @@
     
     [ceo reverseGeocodeLocation: location completionHandler:
      ^(NSArray *placemarks, NSError *error) {
-         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+         CLPlacemark *placemark = placemarks[0];
          NSLog(@"placemark %@",placemark);
          //String to hold address
          NSString *locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];

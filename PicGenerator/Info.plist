@@ -51,6 +51,8 @@
 	<string>Required for Monitoring.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Required for Monitoring and Ranging.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>photo lib</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Required for Ranging.</string>
 </dict>

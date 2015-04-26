@@ -7,7 +7,7 @@
 //
 
 #import "PhotoFromLibViewController.h"
-#import "MHCameraRoll.h"
+#import "PhotoCameraRoll.h"
 @import ImageIO;
 
 @interface PhotoFromLibViewController ()
@@ -36,7 +36,7 @@
     
     NSString* gpsDataString;
     CLLocation* location;
-    BOOL isGPSDataValible = [MHCameraRoll getLocation:&location andStringRepresentation:&gpsDataString forMetaData:_metadata];
+    BOOL isGPSDataValible = [PhotoCameraRoll getLocation:&location andStringRepresentation:&gpsDataString forMetaData:_metadata];
     
     if (isGPSDataValible) {
         self.imageView.image = [self drawText:gpsDataString inImage:_image atPoint:CGPointMake(0, _image.size.height-70)];
@@ -54,15 +54,12 @@
     
 }
 
-
-
 -(UIImage*) drawText:(NSString*) text
              inImage:(UIImage*)  image
              atPoint:(CGPoint)   point
 {
     
-    NSMutableAttributedString *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    textStyle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",text]];
+    NSMutableAttributedString *textStyle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",text]];
     
     // text color
     [textStyle addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:0. green:0. blue:0. alpha:0.5] range:NSMakeRange(0, textStyle.length)];

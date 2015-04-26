@@ -2,16 +2,17 @@
 //  MHCameraRoll.h
 //  pxlcld-ios
 //
-//  Created by Matej Hrescak and Evgeny Zorin on 3/19/14.
-//  Copyright (c) 2014 facebook. All rights reserved.
+//  Created by  Evgeny Zorin on 3/19/14.
 //
 
 #import <Foundation/Foundation.h>
+
 @import UIKit;
 @import CoreLocation;
 @import ImageIO;
+#import "UtilsHelper.h"
 
-@interface MHCameraRoll : NSObject
+@interface PhotoCameraRoll : NSObject
 
 typedef NS_ENUM(NSInteger, MHCameraRollFileTypes) {
     MHCameraRollFileTypesAll,
@@ -29,7 +30,7 @@ typedef NS_ENUM(NSInteger, MHCameraRollThumbStyle) {
 
 - (void)loadCameraRollWithSuccess:(void(^)(void))success unauthorized:(void(^)(void))unauthorized;
 
-- (NSInteger)imageCount;
+@property (nonatomic, readonly) NSInteger imageCount;
 - (NSString *)fileNameAtIndex:(NSInteger)index;
 - (NSString *)fileURLAtIndex:(NSInteger)index;
 - (void)thumbAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *thumb))completionHandler;
