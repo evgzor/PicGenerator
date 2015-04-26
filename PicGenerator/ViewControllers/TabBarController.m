@@ -46,8 +46,9 @@
 {
     [super viewDidAppear:animated];
     
-    self.selectedIndex = 1;
-    self.selectedIndex = 0;
+    [self.viewControllers enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+         self.selectedIndex = idx;
+    }];
     
 }
 
