@@ -42,6 +42,15 @@
     self.viewControllers = @[firstNav, secondNav,thirdNav];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.selectedIndex = 1;
+    self.selectedIndex = 0;
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
