@@ -14,10 +14,10 @@
 
 
 @interface CameraViewController () <CLLocationManagerDelegate>
-    
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property(nonatomic, weak) IBOutlet UIView *vImagePreview;
-@property(nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
+
+@property (nonatomic, strong) CLLocationManager         *locationManager;
+@property (nonatomic, weak  ) IBOutlet UIView           *vImagePreview;
+@property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
 
 @end
 
@@ -28,46 +28,46 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager                 = [[CLLocationManager alloc] init];
+    _locationManager.delegate        = self;
+    _locationManager.distanceFilter  = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
+
     [self.locationManager requestWhenInUseAuthorization];
-    
+
     [_locationManager startUpdatingLocation];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = @{AVVideoCodecKey: AVVideoCodecJPEG};
-    [_stillImageOutput setOutputSettings:outputSettings];
-    
 
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    session.sessionPreset = AVCaptureSessionPresetMedium;
-    
-    CALayer *viewLayer = self.vImagePreview.layer;
-    NSLog(@"viewLayer = %@", viewLayer);
-    
+    self.stillImageOutput                                = [[AVCaptureStillImageOutput alloc] init];
+    NSDictionary *outputSettings                         = @{AVVideoCodecKey: AVVideoCodecJPEG};
+    [_stillImageOutput setOutputSettings:outputSettings];
+
+
+    AVCaptureSession *session                            = [[AVCaptureSession alloc] init];
+    session.sessionPreset                                = AVCaptureSessionPresetMedium;
+
+    CALayer *viewLayer                                   = self.vImagePreview.layer;
+    NSLog(@"viewLayer                                    = %@", viewLayer);
+
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-    
-    captureVideoPreviewLayer.frame = self.vImagePreview.bounds;
+
+    captureVideoPreviewLayer.frame                       = self.vImagePreview.bounds;
     [self.vImagePreview.layer addSublayer:captureVideoPreviewLayer];
-    
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    NSError *error = nil;
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+
+    AVCaptureDevice *device                              = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
+    NSError *error                                       = nil;
+    AVCaptureDeviceInput *input                          = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     if (!input) {
         // Handle the error appropriately.
         NSLog(@"ERROR: trying to open camera: %@", error);
-        
+
         [[[UIAlertView alloc] initWithTitle:@"Camera Error" message:[NSString stringWithFormat:@"ERROR: trying to open camera: %@", error] delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles: nil] show];
-        
+
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -79,18 +79,18 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+
     _locationManager.delegate = nil;
-    _locationManager = nil;
-    _stillImageOutput = nil;
+    _locationManager          = nil;
+    _stillImageOutput         = nil;
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - memory managment
 -(void)dealloc
 {
     _locationManager.delegate = nil;
-    _locationManager = nil;
-    _stillImageOutput = nil;
+    _locationManager          = nil;
+    _stillImageOutput         = nil;
 }
 
 #pragma mark - user action
@@ -121,12 +121,12 @@
          }
          else
              NSLog(@"no attachments");
-         
-         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-         UIImage *image = [[UIImage alloc] initWithData:imageData];
-         
-         image = [image imageByRotatingImageFromImageOrientation:UIImageOrientationRight];
-         
+
+         NSData *imageData               = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+         UIImage *image                  = [[UIImage alloc] initWithData:imageData];
+
+         image                           = [image imageByRotatingImageFromImageOrientation:UIImageOrientationRight];
+
          [image saveImageWithInfo:(__bridge NSDictionary*)exifAttachments forLocation:_locationManager.location];
          
      }];

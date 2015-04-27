@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@import AssetsLibrary;
 
 @interface CameraViewController : UIViewController
 

@@ -15,9 +15,9 @@
 
 @interface ThirdViewController ()  <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UIView *unauthorizedView;
-@property (nonatomic, strong) PhotoCameraRoll *cameraRoll;
+@property (nonatomic, weak  ) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak  ) IBOutlet UIView           *unauthorizedView;
+@property (nonatomic, strong) PhotoCameraRoll  *cameraRoll;
 
 @end
 
@@ -26,14 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Camera" style:UIBarButtonItemStylePlain target:self action:@selector(showCamera:)];
+
+    UIBarButtonItem *anotherButton         = [[UIBarButtonItem alloc] initWithTitle:@"Camera" style:UIBarButtonItemStylePlain target:self action:@selector(showCamera:)];
     self.navigationItem.rightBarButtonItem = anotherButton;
-    
-    UINib *nib = [UINib nibWithNibName:@"CollectionCell" bundle: nil];
+
+    UINib *nib                             = [UINib nibWithNibName:@"CollectionCell" bundle: nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"collectionCell"];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
+    self.collectionView.dataSource         = self;
+    self.collectionView.delegate           = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -43,34 +43,35 @@
     [self reloadUpdatedData];
 }
 
+#pragma mark - memory managment
 -(void)dealloc
 {
-    _collectionView.delegate = nil;
+    _collectionView.delegate   = nil;
     _collectionView.dataSource = nil;
-    _cameraRoll = nil;
+    _cameraRoll                = nil;
 }
 
 -(void)reloadUpdatedData
 {
-    self.cameraRoll = [[PhotoCameraRoll alloc] init];
-    self.cameraRoll.fileTypes = MHCameraRollFileTypesAll; //don't filter by type
-    self.cameraRoll.thumbStyle = MHCameraRollThumbStyleSmallSquare; //make scale to be a third of the screen
-    
+    self.cameraRoll              = [[PhotoCameraRoll alloc] init];
+    self.cameraRoll.fileTypes    = MHCameraRollFileTypesAll;//don't filter by type
+    self.cameraRoll.thumbStyle   = MHCameraRollThumbStyleSmallSquare;//make scale to be a third of the screen
+
     [self.cameraRoll loadCameraRollWithSuccess:^{
         // camera roll has loaded images, this is a good place to call reloadData
         // on your table or collection view and hide view for unauthorized state
         // and reload collectionview's data.
-        self.unauthorizedView.hidden = YES;
+    self.unauthorizedView.hidden = YES;
         dispatch_async(dispatch_get_main_queue(), ^
                       {
                           [self.collectionView reloadData];
-                          
+
                       });
     } unauthorized:^{
         // unauthorized state: access to camera roll was denied by the user so
         // we should show an unauthorized state with text explaining how to
         // re-authorize the app to use camera roll.
-        self.unauthorizedView.hidden = NO;
+    self.unauthorizedView.hidden = NO;
     }];
 }
 
@@ -92,7 +93,7 @@
 {
     CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
     [self.cameraRoll thumbAtIndex:indexPath.row completionHandler:^(UIImage *thumb) {
-        cell.image.image = thumb;
+    cell.image.image     = thumb;
     }];
     return cell;
 }
@@ -103,20 +104,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    UIStoryboard *storyboard               = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     PhotoFromLibViewController*contentPage = [storyboard instantiateViewControllerWithIdentifier:@"detailImage"];
-    
-    
+
     [self.cameraRoll metaDataAtIndex:indexPath.row completionHandler:^(NSDictionary* metadata) {
 
         NSLog(@"attachements: %@", metadata);
-        
+
         [self.cameraRoll imageAtIndex:indexPath.row completionHandler:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^
                            {
                                [contentPage setUpImage:image andMetaData:metadata];
                                [self.navigationController pushViewController:contentPage animated:YES];
-                               
+
                            });
         }];
 
@@ -127,9 +127,9 @@
 
 -(void)showCamera:(id)sender
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    UIStoryboard *storyboard         = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     CameraViewController*contentPage = [storyboard instantiateViewControllerWithIdentifier:@"camera"];
-    
+
     [self.navigationController pushViewController:contentPage animated:YES];
 }
 

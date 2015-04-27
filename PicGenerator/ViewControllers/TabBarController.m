@@ -21,25 +21,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NumberPicGenerator* generator = [[NumberPicGenerator alloc] init];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    
-    FirstViewController* firstVC = [storyboard instantiateViewControllerWithIdentifier:@"first"];
-    firstVC.generator = generator;
-    
-    UINavigationController* firstNav = [[UINavigationController alloc] initWithRootViewController:firstVC];
-    
-    SecondViewController* secondVC = [storyboard instantiateViewControllerWithIdentifier:@"second"];
-    secondVC.generator = generator;
-    
+    NumberPicGenerator* generator     = [[NumberPicGenerator alloc] init];
+
+    UIStoryboard *storyboard          = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+
+    FirstViewController* firstVC      = [storyboard instantiateViewControllerWithIdentifier:@"first"];
+    firstVC.generator                 = generator;
+
+    UINavigationController* firstNav  = [[UINavigationController alloc] initWithRootViewController:firstVC];
+
+    SecondViewController* secondVC    = [storyboard instantiateViewControllerWithIdentifier:@"second"];
+    secondVC.generator                = generator;
+
     UINavigationController* secondNav = [[UINavigationController alloc] initWithRootViewController:secondVC];
-    
-    ThirdViewController *thirdVC = [storyboard instantiateViewControllerWithIdentifier:@"third"];
-    
-    UINavigationController* thirdNav = [[UINavigationController alloc] initWithRootViewController:thirdVC];
-    
-    self.viewControllers = @[firstNav, secondNav,thirdNav];
+
+    ThirdViewController *thirdVC      = [storyboard instantiateViewControllerWithIdentifier:@"third"];
+
+    UINavigationController* thirdNav  = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+
+    self.viewControllers              = @[firstNav, secondNav,thirdNav];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -49,7 +49,6 @@
     [self.viewControllers enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
          self.selectedIndex = idx;
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,8 +10,13 @@
 #import "NumberPicGenerator.h"
 
 @interface BaseViewConrollerViewController : UIViewController <NumberPicGeneratorDelegate>
-
-@property (nonatomic, weak) IBOutlet UIImageView* imageView;
-@property (nonatomic,strong) NumberPicGenerator* generator;
+/**
+ *  Picture representation control
+ */
+@property (nonatomic, weak  ) IBOutlet UIImageView        * imageView;
+/**
+ *  pointer to generator picture object
+ */
+@property (nonatomic, strong) NumberPicGenerator * generator;
 
 @end

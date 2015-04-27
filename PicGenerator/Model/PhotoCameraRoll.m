@@ -22,10 +22,10 @@
 {
     self = [super init];
     if (self) {
-        _library = [[ALAssetsLibrary alloc] init];
-        _fileTypes = MHCameraRollFileTypesAll;
+        _library    = [[ALAssetsLibrary alloc] init];
+        _fileTypes  = MHCameraRollFileTypesAll;
         _thumbStyle = MHCameraRollThumbStyleSmallSquare;
-        _images = [[NSMutableArray alloc] init];
+        _images     = [[NSMutableArray alloc] init];
         _thumbCache = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -33,8 +33,8 @@
 
 - (void)dealloc
 {
-    _library = nil;
-    _images = nil;
+    _library    = nil;
+    _images     = nil;
     _thumbCache = nil;
 }
 
@@ -76,7 +76,7 @@
 
 #pragma mark - custom style setter
 
-- (void)setThumbStyle:(MHCameraRollThumbStyle)thumbStyle
+- (void)setThumbStyle:(PhotoCameraRollThumbStyle)thumbStyle
 {
     _thumbStyle = thumbStyle;
     //purge the thumb cache since the scale is not relevant anymore

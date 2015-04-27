@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotoFromLibViewController : UIViewController
-
+/**
+ *  send image to UIImageViewControl
+ *
+ *  @param image    result image
+ *  @param metadata image metadata
+ */
 -(void)setUpImage:(UIImage*) image andMetaData :(NSDictionary *)metadata;
 
 @end

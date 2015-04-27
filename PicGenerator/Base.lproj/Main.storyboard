@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="-606"/>
+            <point key="canvasLocation" x="-1107" y="10"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -103,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="57"/>
+            <point key="canvasLocation" x="-284" y="25"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -118,7 +118,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-419" y="-34"/>
+            <point key="canvasLocation" x="-1107" y="766"/>
         </scene>
         <!--Camera-->
         <scene sceneID="6NJ-U7-qJD">
@@ -137,8 +137,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1Q-w9-Ibp">
-                                <rect key="frame" x="281" y="502" width="39" height="30"/>
+                                <rect key="frame" x="270" y="472" width="60" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.42475388089999999" blue="0.75774384230000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="DSr-sq-ajk"/>
+                                    <constraint firstAttribute="width" constant="60" id="Jjl-dM-Fr4"/>
+                                </constraints>
                                 <state key="normal" title="shoot">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -243,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuS-SI-e8n" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="791"/>
+            <point key="canvasLocation" x="756" y="791"/>
         </scene>
         <!--Photo From Lib View Controller-->
         <scene sceneID="QTf-xP-vWm">
@@ -275,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0B-B7-9O4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="791"/>
+            <point key="canvasLocation" x="1489" y="791"/>
         </scene>
     </scenes>
     <resources>

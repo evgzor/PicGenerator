@@ -50,8 +50,12 @@
 
 -(void)dealloc
 {
+    if (_delegates.count) {
+        [_delegates removeAllObjects];
+    }
     _delegates = nil;
-    
+    [_timer invalidate];
+    _timer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -70,7 +74,7 @@
 }
 
 
-#pragma mark - Control function
+#pragma mark - Control process generation functions
 -(void)start
 {
     if (_isStarted) {
@@ -82,6 +86,7 @@
                                                 selector:@selector(onTick)
                                                 userInfo: nil repeats:YES];
     _isStarted = YES;
+    [_delegates applySelector:@selector(updateState) withArgument:nil];
 }
 
 -(void)pause
@@ -89,6 +94,7 @@
     [_timer invalidate];
     _timer = nil;
     _isStarted = NO;
+    [_delegates applySelector:@selector(updateState) withArgument:nil];
     }
 
 #pragma mark - Timer processing
@@ -120,7 +126,7 @@
     
     [_delegates applySelector:@selector(unevenUpdatedImage:) withArgument:image];
     [_delegates applySelector:@selector(evenUpdatedIdmage:) withArgument:image];
-    [_delegates applySelector:@selector(updateState) withArgument:nil];
+    
     
     [self pause];
     
@@ -133,7 +139,7 @@
     
 }
 
-
+#pragma mark - private function
 -(UIImage*)getImageFromText:(NSString*)text
 {
     UIImage* image = [UIImage imageWithColor:[UIColor clearColor] andSize:[UIApplication sharedApplication].keyWindow.bounds.size];

@@ -16,9 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [_generator addDelegate:self];
-    
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStylePlain target:self action:@selector(startStopGenerator)];
+
+    UIBarButtonItem *anotherButton         = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStylePlain target:self action:@selector(startStopGenerator)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -34,6 +35,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - memory managment
 -(void)dealloc
 {
     _generator = nil;
@@ -46,8 +48,8 @@
     if (!_generator) {
         return;
     }
-    NSString* titleText =  _generator.isStarted ? @"Start" : @"Pause";
-    self.navigationItem.rightBarButtonItem.title =titleText;
+    NSString* titleText                          = _generator.isStarted ? @"Start" : @"Pause";
+    self.navigationItem.rightBarButtonItem.title = titleText;
     
     if (_generator.isStarted) {
         [_generator pause];
@@ -63,7 +65,7 @@
 
 -(void)updateState
 {
-    NSString* titleText =  _generator.isStarted ? @"Pause" : @"Start";
+    NSString* titleText                          = _generator.isStarted ? @"Pause" : @"Start";
     self.navigationItem.rightBarButtonItem.title = titleText;
 }
 

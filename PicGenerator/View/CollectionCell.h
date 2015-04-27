@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionCell : UICollectionViewCell
-
+/**
+ *  custom image
+ */
 @property (nonatomic, weak)IBOutlet UIImageView* image;
 
 @end

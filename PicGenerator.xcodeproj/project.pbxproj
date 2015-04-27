@@ -155,20 +155,20 @@
 		F00C97151AEBE71800282F39 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F00C97161AEBE71800282F39 /* CameraViewController.h */,
-				F00C97171AEBE71800282F39 /* CameraViewController.m */,
-				F00C97181AEBE71800282F39 /* FirstViewController.h */,
-				F00C97191AEBE71800282F39 /* FirstViewController.m */,
-				848CCE5D1AECF5EC00A679C6 /* BaseViewConrollerViewController.h */,
-				848CCE5E1AECF5EC00A679C6 /* BaseViewConrollerViewController.m */,
-				F00C971A1AEBE71800282F39 /* PhotoFromLibViewController.h */,
-				F00C971B1AEBE71800282F39 /* PhotoFromLibViewController.m */,
-				F00C971C1AEBE71800282F39 /* SecondViewController.h */,
-				F00C971D1AEBE71800282F39 /* SecondViewController.m */,
 				F00C971E1AEBE71800282F39 /* TabBarController.h */,
 				F00C971F1AEBE71800282F39 /* TabBarController.m */,
+				F00C97181AEBE71800282F39 /* FirstViewController.h */,
+				F00C97191AEBE71800282F39 /* FirstViewController.m */,
+				F00C971C1AEBE71800282F39 /* SecondViewController.h */,
+				F00C971D1AEBE71800282F39 /* SecondViewController.m */,
+				848CCE5D1AECF5EC00A679C6 /* BaseViewConrollerViewController.h */,
+				848CCE5E1AECF5EC00A679C6 /* BaseViewConrollerViewController.m */,
 				F00C97201AEBE71800282F39 /* ThirdViewController.h */,
 				F00C97211AEBE71800282F39 /* ThirdViewController.m */,
+				F00C97161AEBE71800282F39 /* CameraViewController.h */,
+				F00C97171AEBE71800282F39 /* CameraViewController.m */,
+				F00C971A1AEBE71800282F39 /* PhotoFromLibViewController.h */,
+				F00C971B1AEBE71800282F39 /* PhotoFromLibViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
