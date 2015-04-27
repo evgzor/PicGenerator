@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>394FBA5F-90AF-4759-9E53-6B11676FD1DD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>PicGenerator</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>EED31FF9CC57977D50427D7757B4D3A10C0A48B0</key>
 		<string>https://github.com/evgzor/PicGenerator.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>PicGenerator.xcodeproj/project.xcworkspace</string>
+	<string>PicGenerator.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>EED31FF9CC57977D50427D7757B4D3A10C0A48B0</key>

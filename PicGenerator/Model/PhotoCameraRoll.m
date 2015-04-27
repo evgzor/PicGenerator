@@ -5,7 +5,7 @@
 //
 
 #import "PhotoCameraRoll.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+@import AssetsLibrary;
 
 
 @interface PhotoCameraRoll()
