@@ -34,18 +34,20 @@
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"collectionCell"];
     self.collectionView.dataSource         = self;
     self.collectionView.delegate           = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadUpdatedData) name:ALAssetsLibraryChangedNotification object:nil];
+    [self reloadUpdatedData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self reloadUpdatedData];
 }
 
 #pragma mark - memory managment
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _collectionView.delegate   = nil;
     _collectionView.dataSource = nil;
     _cameraRoll                = nil;
@@ -92,9 +94,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    [self.cameraRoll thumbAtIndex:indexPath.row completionHandler:^(UIImage *thumb) {
-    cell.image.image     = thumb;
-    }];
+    if (_cameraRoll.imageCount-1 >=indexPath.row) {
+        [self.cameraRoll thumbAtIndex:indexPath.row completionHandler:^(UIImage *thumb) {
+            cell.image.image     = thumb;
+        }];
+    }
+    
     return cell;
 }
 
@@ -132,5 +137,6 @@
 
     [self.navigationController pushViewController:contentPage animated:YES];
 }
+
 
 @end
